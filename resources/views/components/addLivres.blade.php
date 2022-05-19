@@ -1,3 +1,7 @@
+
+
+
+
 <div class="mt-5 md:mt-0 md:col-span-2">
     <form action="/livres" method="POST">
       @csrf
@@ -10,16 +14,21 @@
             </div>
 
             <div class="col-span-6 sm:col-span-3">
+
               <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-              <textarea name="extrait" id="extrait" rows="4" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block h-full w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required></textarea>
+              <textarea name="extrait" id="extrait" rows="4" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block h-full w-full shadow-sm sm:text-sm border-gray-300 rounded-md" required>
+              </textarea>
             </div>
 
             <div class="col-span-6 sm:col-span-3">
+
                 <label for="country" class="block text-sm font-medium text-gray-700">Auteurs</label>
                 <select id="auteurs" name="auteurs" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
                  @foreach ($auteurs as $auteur)
                   <option value="{{$auteur->id}}">{{$auteur->nom}} {{$auteur->prenom}}</option>
                  @endforeach
+
                 </select>
               </div>
             

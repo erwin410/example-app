@@ -22,10 +22,16 @@ Route::get('/header', function(){
     return view('header');
 });
 
+Route::get('/footer', function(){
+    return view('footer');
+});
+
 
 Route::get('/livres',[LivresController::class, 'getAll'])->name('livres');
 
 Route::post('/livres',[LivresController::class, 'add']);
 
 Route::get('/livres/{id}', [LivresController::class, 'show'])->whereNumber('id');
+
+Route::delete('/livres/{id}', [LivresController::class, 'delete']);
 

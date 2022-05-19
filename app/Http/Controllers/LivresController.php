@@ -11,7 +11,7 @@ class LivresController extends Controller
   
 
    public function getAll () {
-        $livres = Livres::all();
+        $livres = Livres::with('auteur')->get();
         $auteurs = Auteurs::all();
 
        return view('livres', [
@@ -29,12 +29,22 @@ class LivresController extends Controller
        $livre = new Livres();
        $livre->titre = $request['titre'];
        $livre->extrait = $request['extrait'];
-       $livre->id_auteur = $request->auteur;
+       $livre->id_auteur = $request->auteurs;
        $livre->save();
 
        return redirect()->route('livres');
        
    }
+
+   public function delete($id) {
+       
+    $livre = Livres::find($id);
+    $livre->delete();
+
+    return redirect()->route('livres');
+    
+    }
+
 
    public function show($id) {
        

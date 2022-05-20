@@ -58,4 +58,39 @@ class LivresController extends Controller
     }
         
    }
+
+   public function getLivres ($id) {
+       $livre = Livres::where('id_auteur', $id)->get();
+       $auteurs = Auteurs::find($id);
+        // dd($auteurs);
+
+       return view('auteur', [
+           'livres' => $livre,
+           'auteurs' => $auteurs,
+       ]);
+   }
+
+   public function showUpdate($id) {
+    $livre = Livres::find($id);
+    $auteurs = Auteurs::all();
+    
+    return view('updateLivres', [
+        'update' => $livre,
+        'auteurs' => $auteurs,
+        'id' => $id,
+    ]);
+   }
+
+   public function edit(Request $request, $id) {
+
+    $livre = Livres::find($id);
+
+    $livre->titre = $request['titre'];
+    $livre->extrait = $request['extrait'];
+    
+    $livre->update();
+
+    return redirect()->route('livres');
+   }
+  
 }

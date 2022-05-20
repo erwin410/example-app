@@ -33,5 +33,11 @@ Route::post('/livres',[LivresController::class, 'add']);
 
 Route::get('/livres/{id}', [LivresController::class, 'show'])->whereNumber('id');
 
+Route::get('/auteur/{id}', [LivresController::class, 'getLivres'])->whereNumber('id');
+
+Route::get('/updateLivres/{id}', [LivresController::class, 'showUpdate'])->whereNumber('id')->name('update');
+
+Route::post('/updateLivres/{id}', [LivresController::class, 'edit'])->name('updateLivres');
+
 Route::delete('/livres/{id}', [LivresController::class, 'delete']);
 

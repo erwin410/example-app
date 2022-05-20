@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class auteurs extends Model
 {
     use HasFactory;
+
+ 
 }

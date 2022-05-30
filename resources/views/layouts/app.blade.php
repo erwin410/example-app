@@ -7,11 +7,12 @@
     <title>Librairie</title>
     <link rel="stylesheet" href="{{ asset('./css/app.css')}}">
 </head>
-<body>
-    @include('header')
-<main>
+<body class="w-full flex flex-col justify-between bg-white text-balck">
+    @include('layouts.header')
+    
+    <main class="h-full">
     @yield('main')
 </main>
-    @include('footer')
+    @include('layouts.footer')
 </body>
 </html>

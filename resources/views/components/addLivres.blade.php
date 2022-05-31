@@ -56,15 +56,12 @@
 
                         <div class="relative">
                             <label for="description" class="absolute px-2 ml-2 -mt-3 font-medium text-black bg-white">Description</label>
-                            <textarea name="extrait" id="description" cols="30" rows="10"  class="block w-full px-4 py-4 mt-2 text-base text-black placeholder-gray-400 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-black"></textarea>
+                            <textarea name="extrait" id="description" cols="30" rows="10"  class="block w-full px-4 py-4 mb-10 text-base text-black placeholder-gray-400 bg-white border border-gray-300 rounded-md focus:outline-none focus:border-black"></textarea>
                         </div>
-                       
-
-                      
-
+        
                          <div class="relative">
                             <label for="country" class="absolute px-2 ml-2 -mt-3 font-medium text-gray-600 bg-white">Auteurs</label>
-                            <select  name="auteurs" class="mt-1 block w-full py-2 px-3 text-black border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <select name="auteurs" class="block w-full py-4 px-4 mb-10 text-black border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                               @foreach ($auteurs as $auteur)
                               <option value="{{$auteur->id}}">{{$auteur->nom}} {{$auteur->prenom}}</option>
                              @endforeach
@@ -73,7 +70,7 @@
 
 
                         <div class="relative">
-                           <button class="inline-block w-full px-5 py-4 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-500 ease">Valider</button>
+                           <button class="inline-block w-full px-5 py-4 mt-25 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-500 ease">Valider</button>
                         </div>
                      </form>
             </div>

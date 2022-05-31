@@ -2,6 +2,6 @@
 
 @section('main')
 
-
+@include('home')
     
 @endsection

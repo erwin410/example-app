@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LivresController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,29 +16,50 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('accueil');
 });
 
-Route::get('/header', function(){
+Route::get('/header', function() {
     return view('header');
 });
 
-Route::get('/footer', function(){
+Route::get('/footer', function() {
     return view('footer');
 });
 
 
-Route::get('/livres',[LivresController::class, 'getAll'])->name('livres');
 
-Route::post('/livres',[LivresController::class, 'add']);
+Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
 
-Route::get('/livres/{id}', [LivresController::class, 'show'])->whereNumber('id');
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+
+
+Route::prefix('livres')->controller(LivresController::class)->group(function () {
+    Route::get('/', 'getAll')->name('livres');
+    Route::get('/{id}', 'show')->whereNumber('id');
+});
+
 
 Route::get('/auteur/{id}', [LivresController::class, 'getLivres'])->whereNumber('id');
 
-Route::get('/updateLivres/{id}', [LivresController::class, 'showUpdate'])->whereNumber('id')->name('update');
 
-Route::post('/updateLivres/{id}', [LivresController::class, 'edit'])->name('updateLivres');
+Route::middleware(['auth'])->group(function () {
 
-Route::delete('/livres/{id}', [LivresController::class, 'delete']);
+    Route::prefix('livres')->controller(LivresController::class)->group(function () {
+        Route::post('/', 'add');
+        Route::delete('/{id}', 'delete');
+    });
+
+    Route::get('/updateLivres/{id}', [LivresController::class, 'showUpdate'])->whereNumber('id')->name('update');
+    Route::post('/updateLivres/{id}', [LivresController::class, 'edit'])->name('updateLivres');
+});
+
+
+
 

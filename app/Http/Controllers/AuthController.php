@@ -19,28 +19,21 @@ class AuthController extends Controller
         return view('login');
     }
 
-
-
     
-    public function login (request $request) {
+    public function login (Request $request)
+    {
 
-        $validated = $request->validate([
-            'email' => 'required',
-            'password' => 'required',
+        $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
+        $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('livres')
+                ->withSuccess('Signed in');
+        }
 
-        $user = User::where('email' ,'=', $validated['email'])
-            ->first();
-
-            if (
-                isset($user) && Hash::check($validated['password'], $user->password)
-            ) {
-                session(['user' => $user]);
-                return redirect()->route('livres');
-
-            } else {
-                return redirect()->route('login');
-            }
+        return redirect("login")->withSuccess('Login details are not valid');
     }
 
 
